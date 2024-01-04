@@ -37,8 +37,20 @@ function getIntervalArray(start, end) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(arr1, arr2) {
+  if (arr1.length === 0) {
+    return arr2;
+  }
+  if (arr2.length === 0) {
+    return arr1;
+  }
+
+  return arr2.map((el, ind) => {
+    if (!arr1[ind]) {
+      return el;
+    }
+    return el + arr1[ind];
+  });
 }
 
 /**
@@ -418,8 +430,17 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const arr = new Array(n).fill(new Array(n).fill(0));
+  const res = arr.map((el, ind) =>
+    el.map((em, im) => {
+      if (ind === im) {
+        return 1;
+      }
+      return 0;
+    })
+  );
+  return res;
 }
 
 /**
@@ -433,8 +454,10 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  const res = [];
+  numbers.map((el, ind) => (el % 2 !== 0 ? res.push(ind) : 0));
+  return res;
 }
 
 /**
@@ -447,8 +470,11 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map((el) => {
+    const str = `#${el.toString(16).toUpperCase().padStart(6, '0')}`;
+    return str;
+  });
 }
 
 /**
@@ -514,8 +540,10 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const result = [];
+  arr.map((el, ind) => result.push(new Array(ind + 1).fill(el)));
+  return result.flat();
 }
 
 /**
